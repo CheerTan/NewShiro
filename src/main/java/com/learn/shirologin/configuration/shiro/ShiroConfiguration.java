@@ -50,7 +50,8 @@ public class ShiroConfiguration {
         // 配置退出过滤器,其中的具体的退出代码Shiro已经替我们实现了
         // 从数据库获取动态的权限
         filterChainDefinitionMap.put("gologin", "anon");
-        filterChainDefinitionMap.put("index", "authc");
+        //filterChainDefinitionMap.put("index", "authc");
+        filterChainDefinitionMap.put("/**", "authc");
         //设置过滤链的私有方法
         shiroFilterFactoryBean .setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;

@@ -24,20 +24,25 @@ public class LoginController {
     @RequestMapping(value = "/login")
 
     public String login(String username, String password, Model model) { //String vcode, Boolean rememberMe
+        System.out.println("-----> get in!");
         if (username == null || password == null) {
+            System.out.println("empty");
             //return ResponseBo.warn("验证码不能为空！");
             return "login";
         }
         try {
+            System.out.println("---->i am logining!");
             userService.dologin(username, password);
+            System.out.println("----->finish");
             //return ResponseBo.ok();
 
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
+            System.out.println("Ouch!login is fail!");
             //return ResponseBo.error("认证失败！");
             return "login.html";
         }
-        return "redirect:/index";
+        return "redirect:/user";
     }
 
     @RequestMapping(value = "/loginout")
@@ -46,10 +51,17 @@ public class LoginController {
         subject.logout();
         return "redirect:/gologin";
     }
-    @RequestMapping(value = "user")
-    public String user(){return "userpage.html";}
+    @RequestMapping(value = "/user")
+    public String user(){return "main.html";}
     @RequestMapping(value = "/index")
-    public String index(){return "user.html";}
-
+    public String index(){return "fortest.html";}
+    @RequestMapping(value = "/top")
+    public String top(){return "top.html";}
+    @RequestMapping(value = "/main_left")
+    public String main_left(){return "main_left.html";}
+    @RequestMapping(value = "/main_right")
+    public String main_right(){return "main_right.html";}
+    @RequestMapping(value = "/devicelist")
+    public String devicelist(){return "devicelist.html";}
 
 }
